@@ -3,6 +3,8 @@
 
 import type React from "react"
 
+import { useRouter } from "next/navigation"
+import useUser from "@/hooks/useUser"
 
 import { useState, useEffect } from "react"
 import Image from "next/image"
@@ -38,6 +40,15 @@ export default function MomentsTogether() {
   const [coupleLevel, setCoupleLevel] = useState(3)
   const [couplePoints, setCouplePoints] = useState(320)
   const [weather, setWeather] = useState("sunny")
+
+  const session = useUser()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!session) {
+      router.push("/login")
+    }
+  }, [session])
 
   // Simulate weather data fetch
   useEffect(() => {
