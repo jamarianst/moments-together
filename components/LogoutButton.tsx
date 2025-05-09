@@ -1,6 +1,6 @@
 'use client'
 
-import { supabase } from 'app/supabaseClient.ts'
+import { supabase } from '@/lib/supabaseClient'
 import { useRouter } from 'next/navigation'
 
 export default function LogoutButton() {

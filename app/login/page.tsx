@@ -96,7 +96,7 @@ import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
-import { supabase } from 'app/supabaseClient.ts'
+import { supabase } from '@/lib/supabaseClient'
 import useUser from '@/hooks/useUser'
 
 export default function LoginPage() {
