@@ -46,13 +46,12 @@ export default function MomentsTogether() {
   const [loading, setLoading] = useState(true)
 
   const isClient = typeof window !== 'undefined'
-const session = isClient ? useUser() : null
 
-useEffect(() => {
-  if (isClient && !session) {
-    router.push("/login")
-  }
-}, [session])
+  useEffect(() => {
+    if (typeof window !== 'undefined' && session === null) {
+      router.push('/login')
+    }
+  }, [session])
 
   useEffect(() => {
     if (session !== undefined) {
