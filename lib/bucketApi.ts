@@ -1,4 +1,4 @@
-import { supabase } from '/Users/jah/Desktop/moments-together/app/supabaseClient.ts'
+import { supabase } from 'app/supabaseClient.ts'
 import { getBucketListItems } from '@/lib/bucketApi'
 
 

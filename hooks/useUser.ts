@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { supabase } from '/Users/jah/Desktop/moments-together/app/supabaseClient.ts'
+import { supabase } from 'app/supabaseClient.ts'
 import { Session } from '@supabase/supabase-js'
 
 export default function useUser() {
