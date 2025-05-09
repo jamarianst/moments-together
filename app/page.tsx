@@ -43,6 +43,20 @@ export default function MomentsTogether() {
 
   const session = useUser()
   const router = useRouter()
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (session !== undefined) {
+      if (!session) {
+        router.push("/login")
+      }
+      setLoading(false)
+    }
+  }, [session, router])
+  
+  if (loading) {
+    return <div className="p-8 text-white">Loading...</div>
+  }
 
   useEffect(() => {
     if (!session) {
