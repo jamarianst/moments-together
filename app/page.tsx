@@ -33,6 +33,10 @@ import { Progress } from "@/components/ui/progress"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
+
+import { supabase } from '@/lib/supabaseClient'
+import type { Session } from '@supabase/supabase-js'
+
 export default function MomentsTogether() {
   const [activeTab, setActiveTab] = useState("home")
   const [currentView, setCurrentView] = useState("home")
@@ -51,9 +55,14 @@ export default function MomentsTogether() {
 
   useEffect(() => {
     if (!loading && !session) {
-      router.push("/login")
+      router.replace("/login")
     }
   }, [session, loading, router])
+
+  if (loading) return <div className="p-8 text-white">Loading...</div>
+  if (!session) return null
+  
+
 
   // Simulate weather data fetch
   useEffect(() => {
