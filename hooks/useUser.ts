@@ -38,8 +38,9 @@ export default function useUser() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
+    supabase.auth.getSession().then(({ data }) => {
+      console.log("SESSION FROM SUPABASE:", data.session)
+      setSession(data.session)
       setLoading(false)
     })
 
