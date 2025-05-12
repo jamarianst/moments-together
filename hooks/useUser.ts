@@ -33,22 +33,18 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { Session } from '@supabase/supabase-js'
 
-export default function useUser(): { session: Session | null; loading: boolean } {
+export default function useUser() {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    const getSession = async () => {
-      const { data } = await supabase.auth.getSession()
-      setSession(data.session)
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setSession(session)
       setLoading(false)
-    }
-
-    getSession()
+    })
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
-      setLoading(false)
     })
 
     return () => {
@@ -58,5 +54,6 @@ export default function useUser(): { session: Session | null; loading: boolean }
 
   return { session, loading }
 }
+
 
 
