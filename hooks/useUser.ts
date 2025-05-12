@@ -33,7 +33,7 @@ import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabaseClient'
 import { Session } from '@supabase/supabase-js'
 
-export default function useUser() {
+export default function useUser(): { session: Session | null; loading: boolean } {
   const [session, setSession] = useState<Session | null>(null)
   const [loading, setLoading] = useState(true)
 
@@ -48,6 +48,7 @@ export default function useUser() {
 
     const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session)
+      setLoading(false)
     })
 
     return () => {
@@ -57,4 +58,5 @@ export default function useUser() {
 
   return { session, loading }
 }
+
 
