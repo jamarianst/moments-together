@@ -103,11 +103,13 @@ export default function LoginPage() {
   const session = useUser()
   const router = useRouter()
 
+  /*
   useEffect(() => {
     if (session) {
       router.push('/') // Redirect after login
     }
   }, [session, router])
+  */
 
   return (
     <div className="flex justify-center p-8">
