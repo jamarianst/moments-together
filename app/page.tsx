@@ -41,36 +41,19 @@ export default function MomentsTogether() {
   const [couplePoints, setCouplePoints] = useState(320)
   const [weather, setWeather] = useState("sunny")
 
-  const session = useUser()
+  //const session = useUser()
   const router = useRouter()
-  const [loading, setLoading] = useState(true)
+  //const [loading, setLoading] = useState(true)
 
-  const isClient = typeof window !== 'undefined'
+  //const isClient = typeof window !== 'undefined'
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && session === null) {
-      router.push('/login')
-    }
-  }, [session])
+  const { session, loading } = useUser()
 
   useEffect(() => {
-    if (session !== undefined) {
-      if (!session) {
-        router.push("/login")
-      }
-      setLoading(false)
-    }
-  }, [session, router])
-  
-  if (loading) {
-    return <div className="p-8 text-white">Loading...</div>
-  }
-
-  useEffect(() => {
-    if (!session) {
+    if (!loading && !session) {
       router.push("/login")
     }
-  }, [session])
+  }, [session, loading, router])
 
   // Simulate weather data fetch
   useEffect(() => {
